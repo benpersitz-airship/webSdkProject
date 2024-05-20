@@ -179,7 +179,7 @@
     white-space: normal;
     -webkit-font-smoothing: antialiased;
   }
-  footer {
+  footer .main-site-footer {
     display: flex;
     background-color: #070720;
     background-image: url(https://www.airship.com/wp-content/themes/airship/home23/img/bg-footer.png);
