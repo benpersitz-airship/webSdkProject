@@ -1,0 +1,490 @@
+:root {
+    --bg-color: #E5E5E5;
+    --link-color: #076191;
+    --white: #FFFFFF;
+    --primary-blue: #004bff;
+    --light-blue: #007cba;
+    --primary-gray:#E8E8E8;
+    --gray-1: #D8D8D8;
+    --gray-2: #6C6D6F;
+    --gray-3: #9F9F9F;
+    --red: #ff0d49;
+    --dark-red: #990026;
+    --success: #4ab866;
+    --green: #198754;
+    --dark-green: #105635;
+    --font: 16px 'Lato', sans-serif;
+    --font-400: 400;
+    --font-600: 600;
+    --font-700: 700;
+}
+  /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+  /**
+   * 1. Set default font family to sans-serif.
+   * 2. Prevent iOS text size adjust after orientation change, without disabling
+   *    user zoom.
+   */
+  html {
+    font-family: sans-serif;
+    /* 1 */
+    -ms-text-size-adjust: 100%;
+    /* 2 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
+    margin: 0;
+    padding: 0; }
+
+  /**
+   * Remove default margin.
+   */
+  body {
+    margin: 0;
+  }
+
+  /* HTML5 display definitions
+     ========================================================================== */
+  /**
+   * Correct `block` display not defined for any HTML5 element in IE 8/9.
+   * Correct `block` display not defined for `details` or `summary` in IE 10/11
+   * and Firefox.
+   * Correct `block` display not defined for `main` in IE 11.
+   */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  main,
+  menu,
+  nav,
+  section,
+  summary {
+    display: block; }
+
+  /**
+   * 1. Correct `inline-block` display not defined in IE 8/9.
+   * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+   */
+  audio,
+  canvas,
+  progress,
+  video {
+    display: inline-block;
+    /* 1 */
+    vertical-align: baseline;
+    /* 2 */ }
+
+  /**
+   * Prevent modern browsers from displaying `audio` without controls.
+   * Remove excess height in iOS 5 devices.
+   */
+  audio:not([controls]) {
+    display: none;
+    height: 0; }
+
+  /**
+   * Address `[hidden]` styling not present in IE 8/9/10.
+   * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+   */
+  [hidden],
+  template {
+    display: none;
+  }
+  body, html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+  }
+  body {
+    font: var(--font);
+    line-height: 1.3rem;
+  }
+  a {
+    text-decoration: none;
+  }
+  nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 5px 7px -5px #999999;
+    background-color: #FFFFFF !important;
+    background: url(https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fd6ppbusd72p6s4p5ou5a5s420%2Fpublic%2F1713830371%2FFlight-school-Header-1+1+%281%29.1713830371315.png);
+    background-size: cover !important;
+    padding: 0 20px;
+  }
+  code {
+    color: #555555;
+    letter-spacing: 2px;
+    word-wrap: break-word;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    padding: 5px 20px;
+  }
+  h2 {
+    margin: 0;
+    left: 0;
+    right: 0;
+  }
+  form label {
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .helper {
+    font-weight: 100;
+    font-size: 12px;
+    font-style: italic;
+    display: block;
+  }
+  form input[type=text] {
+    padding: 10px;
+    font-size: 16px;
+    min-width: 200px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    border: 1px solid #d8d9e8;
+  }
+  table thead {
+    white-space: nowrap;
+  }
+  table tr {
+    vertical-align: top;
+    border-bottom: 1px solid #d8d9e8;
+  }
+  tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  table td, table th {
+    text-align: left;
+    padding: 8px;
+    line-height: 1.5;
+  }
+  table th {
+    font-family: inter, Helvetica, Arial, sans-serif;
+    background: #7b7c84;
+    border: 1px solid #7b7c84;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: none;
+    vertical-align: middle;
+    white-space: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+  footer {
+    display: flex;
+    background-color: #070720;
+    background-image: url(https://www.airship.com/wp-content/themes/airship/home23/img/bg-footer.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    justify-content: center;
+    padding: 40px 40px;
+    flex-flow: wrap-reverse;
+    margin-top: 30px;
+  }
+  .flex {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 50px;
+  }
+  .menu {
+    display: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-weight: bold;
+  }
+  .menu a {
+    color: #000000;
+    text-decoration: none;
+    padding: 0 10px;
+  }
+  .menu a:hover {
+    color: var(--primary-blue);
+    text-shadow: 0px 3px 2px rgba(50,50,50,0.2);
+  }
+  .mobile-menu {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+  }
+  .menu-icon {
+    font-size: 25px;
+    cursor: pointer;
+  }
+  .hide {
+    display: none;
+  }
+  .show {
+    display: inline-flex;
+  }
+  .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  .section {
+    background: #F2F3F4;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    font-size: 30px;
+    text-transform: uppercase;
+    height: 100px;
+    border-bottom: double;
+    border-color: #999999;
+  }
+  .action-box {
+    max-width: 1500px;
+    margin: 0 auto 50px;
+    /* margin-bottom: 50px; */
+    padding: 10px 20px;
+    background: white;
+    -webkit-box-shadow: 0px 21px 5px -17px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 21px 5px -17px rgba(0,0,0,0.15);
+    box-shadow: 0px 21px 5px -17px rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 4px;
+  }
+  .actions {
+    background: #F2F3F4;
+    border-radius: 4px;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 5px 10px;
+  }
+  .buttons {
+    margin: 10px 0 0;
+    overflow: auto;
+    text-align: right;
+  }
+  .btn {
+    border-radius: 4px;
+    padding: 10px 20px;
+    background: var(--green);
+    border: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: var(--dark-green);
+    -webkit-box-shadow: 0px 21px 5px -17px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 21px 5px -17px rgba(0,0,0,0.15);
+    box-shadow: 0px 21px 5px -17px rgba(0,0,0,0.15);
+  }
+  .remove {
+    background: var(--red);
+  }
+  .remove:hover {
+    background: var(--dark-red);
+    color: #FFFFFF;
+  }
+  .set {
+    background: var(--link-color);
+  }
+  .set:hover {
+    background: navy;
+    color: #FFFFFF;
+  }
+  .note {
+    background: white;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, .2) 0 1px 3px;
+    padding: 5px;
+  }
+  .note header {
+    color: #fff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    text-transform: uppercase !important;
+    padding: 5px 10px;
+    margin: -5px -5px 5px;
+    font-weight: 700;
+  }
+  .note p {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .note-best-practice {
+    animation: trippy-colors 15s ease infinite;
+  }
+  .note-note {
+    background: var(--primary-blue);
+  }
+  .note-important {
+    background: #ffb700;
+  }
+  .sdk-section, .user-section {
+    padding: 20px 20px 0;
+  }
+  .sdk-section {
+    background: url(https://www.airship.com/wp-content/uploads/2023/11/bg-section-1-cropped.png);
+    background-size: contain;
+    background-position: right center;
+    background-repeat: no-repeat;
+  }
+  .user-section {
+    background-color: #070720;
+    background: url(https://www.airship.com/wp-content/uploads/2023/11/bg-section-2-cropped.png);
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+  }
+  #nuid-form {
+    text-align: right;
+  }
+  .form-block {
+    margin: 5px 0;
+  }
+  .form-block label, .form-block input[type=text] {
+    display: block;
+  }
+  .form-block input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .onNUID label {
+    font-size: 18px;
+  }
+  input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+  }
+  .footer-company-info-wrapper {
+      display: flex;
+      flex-direction: column;
+      padding: 30px 40px;
+  }
+  img.footer-company-logo{
+      width: 150px;
+      margin-bottom: 15px;
+  }
+  .footer-company-text {
+      font-size: 15px;
+      width: 340px;
+      color: #FFFFFF;
+      line-height: 24px;
+  }
+  .footer-link-tree-wrapper {
+      display: flex;
+      gap: 40px 75px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      padding: 30px 40px;
+  }
+  .footer-link-column-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+  .footer-link-column-wrapper .footer-header {
+      color: #ADADAD;
+      font-weight: bold;
+      font-size: 17px;
+      margin-bottom: 15px;
+  }
+  .footer-link-column-wrapper .footer-link{
+      font-size: 15px;
+      color: #FFFFFF;
+  }
+  .footer-link-column-wrapper .footer-link:hover{
+      text-decoration: underline;
+  }
+  #ep-footer {
+      margin-top: 0px;
+  }
+  .ease {
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+  #logo {
+    width: 35px;
+  }
+  #logo:hover {
+    filter: hue-rotate(3.142rad);
+  }
+  @media (max-width: 600px) {
+    .btn {
+      display: block;
+      width: 100%;
+      margin: 5px 0;
+    }
+    .buttons {
+      text-align: center;
+    }
+    #nuid-form {
+      text-align: left;
+    }
+    #nuid-form input[type=text] {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  @keyframes trippy-colors {
+    0% {
+        background-color: #23d5ab;
+    }
+    15% {
+        background-color: #23a6d5;
+    }
+    30% {
+        background-color: #e73c7e;
+    }
+    45% {
+        background-color: #ee7752;
+    }
+    60% {
+        background-color: #e73c7e;
+    }
+    75% {
+        background-color: #23a6d5;
+    }
+    100% {
+        background-color: #23d5ab;
+    }
+  }
+  /* mobile view styling */
+  @media only screen and (max-width: 880px){
+    .footer-background-wrapper, .footer-link-tree-wrapper {
+      justify-content: flex-start;
+    }
+    .footer-link-column-wrapper .footer-header {
+      font-size: 15px;
+    }
+    .footer-link-column-wrapper .footer-link {
+      font-size: 14px;
+    }
+  }
+  @media only screen and (min-width: 875px) {
+      .catalog-filters .footer-background-wrapper {
+          padding-left:350px
+      }
+  }
+  @media only screen and (min-width: 768px) {
+    .mobile-menu {
+      display: none;
+    }
+    .flex {
+      flex-direction: row;
+    }
+    .menu {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  }

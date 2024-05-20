@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta name="description" content="Helping brands master Mobile App Experiences (MAX) to engage customers and win their loyalty. Learn more.">
+  	<title>Airship Demo Site</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles.css" />
+    <script type="text/javascript">
+      // 86acbd31cd7c09cf30acb66d2fbedc91daa48b86:1715970619.5832934
+      !function(n,r,e,t,c){var i,o="Promise"in n,u={then:function(){return u},catch:function(n){
+      return n(new Error("Airship SDK Error: Unsupported browser")),u}},s=o?new Promise((function(n,r){i=function(e,t){e?r(e):n(t)}})):u
+      ;s._async_setup=function(n){if(o)try{i(null,n(c))}catch(n){i(n)}},n[t]=s;var a=r.createElement("script");a.src=e,a.async=!0,a.id="_uasdk",
+      a.rel=t,r.head.appendChild(a)}(window,document,'https://aswpsdkus.com/notify/v1/ua-sdk.min.js',
+        'UA', {
+          vapidPublicKey: 'BGoaq6OB072RABcfTdWex-Cg60IBjDT9kJPGWGB6jrzSYgY6T-B6TEC3PKnlpbVXALnijOMMoKfz6lWvqiPIgeI=',
+          
+          
+          appKey: 'G0MM8eAYR92mbaosIHxz6g',
+          token: 'MTpHME1NOGVBWVI5Mm1iYW9zSUh4ejZnOnBhMlpOaWdfTGRpS3RQel9yR0RTQ29LVWR3RFg2VlJNVVV5alprR2dqTEE'
+        });
+      
+      </script>
+    <script src="assets/SDK_functions.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="flex">
+        <div class="menu">
+          <a href="#registration" class="ease">Registration</a>
+        </div>
+        <div class="menu">
+          <a href="#optin-forms" class="ease">Opt-in Forms</a>
+        </div>
+        <div class="menu">
+          <a href="#nuids" class="ease">Named Users</a>
+        </div>
+        <div class="menu">
+          <a href="#tags" class="ease">Tags</a>
+        </div>
+        <div class="menu">
+          <a href="#attrs" class="ease">Attributes</a>
+        </div>
+        <div class="menu">
+          <a href="#top"><img src="https://www.airship.com/wp-content/uploads/2022/11/airship-corporate-2.png" alt="airship logo" id="logo" class="ease"></a>
+        </div>
+        <div class="mobile-menu">
+          <span class="menu-icon open">&#x2261;</span>
+          <span class="menu-icon close">&#x2715;</span>
+        </div>
+      </div>
+    </nav>
+
+		<main id="top">
+    <div class="section">
+      <h2>Registration</h2>
+    </div>
+      <div class="sdk-section">
+  <!-- REGISTRATION -->
+        <div class="action-box" id="registration">
+          <h3>User Registration</h3>
+          <p>A user is registered when they opt in to receiving notifications via the system dialog, which varies slightly from browser to browser. The dialog is presented when the page invokes the <code>sdk.register()</code> function.</p>
+          <div class="note">
+            <header class="note-best-practice ease">
+              Best Practice
+            </header>
+            <p>We discourage calling the register function on page load, before the user has had a chance to assess the potential usefulness of notifications from your site. If a user is immediately presented with a notification permission dialog without knowing what sort of notifications to expect from your site, chances are higher that they will decline, making it difficult to re-engage with them in the future.</p>
+            <p>It is a best practice to explain the value of your notifications before displaying the system notification opt-in prompt.</p>
+            <p>We provide <a href="https://docs.airship.com/platform/web/plugins/" target="_blank">plugins</a> in the SDK to help you customize this initial prompt.</p>
+          </div>
+          </p>
+          <h3>Registration Status</h3>
+          <ul>
+            <li><b>Opted-in:</b> Allowed notifications and has not subsequently disallowed them, either via browser settings or by calling the <code>optOut()</code> method.</li>
+            <li><b>Opted-out:</b> Initially allowed notifications but subsequently disabled them.</li>
+            <li><b>Uninstalled:</b> A user is considered to be Uninstalled if they have both: Opted out via the browser settings, AND not returned to the website.</li>
+          </ul>
+          <hr>
+          <h3>HTML Prompt</h3>
+          <p>
+            Allow users to express their interest in notifications prior to registration. It is a best practice to explain the value of your notifications before prompting the opt-in flow. Using a soft prompt also gives users the chance to politely decline for now, without setting the browser permission to denied, giving you the chance to request again at a later time.
+          </p>
+          <h3>Two Options</h3>
+          <ul>
+            <li><b>Alert:</b> a basic alert, with configurable title, message, logo, and button fields</li>
+            <li><b>Bell:</b> a small bell that stays fixed on the page</li>
+          </ul>
+          <hr>
+          <div class="actions buttons">
+            <button type="button" name="prompt" id="prompt" class="btn ease" onclick="prompt_registration();">Prompt Registration</button>
+          </div>
+        </div>
+
+  <!-- OPT-IN FORMS -->
+        <div class="action-box" id="optin-forms">
+          <h3>Opt-in Forms</h3>
+          <p>An opt-in form is a form you can add to your website, where your users can sign up for email or SMS messaging.</p>
+          <p>Airship provides the methods to render an opt-in form via plugin in our Web SDK.<p>
+          <p>You can choose either to embed the form in your site or display in a modal window. Both embedded and modal versions are available in large and small formats.</p>
+          <p>The forms require the Airship Web SDK, and will adopt the stylings from your site’s CSS, but can be customized or adjusted further.</p>
+          <h3>User registration handling:</h3>
+          <ul>
+            <li><b>Email:</b> When an email address is submitted through the form, the address is registered for transactional emails. By default, it is also registered for commercial emails, or you may specify an option to request Double Opt-In for commercial messages.</li>
+            <li><b>SMS:</b> When an MSISDN is submitted through the form, Airship sends a message to that number, prompting them to opt in. For more information, see the SMS platform documentation: Non-Mobile Double Opt-In.</li>
+          </ul>
+          <p>The SMS or Email channel will be associated with a named user if one has already been set at the time the channel is added. If the channel is created prior to a Named User being set, the information and all other data collected will be associated with an Anonymous Contact. The anonymous contact will be set by Airship, and when a new Named User is set, this data will be transferred to it.</p>
+          <p><b>You must use individual forms for email and SMS; you cannot use the same for both channels.</b></p>
+          <hr>
+          <h3>Adding a form to your website</h3>
+          <p>To add an opt-in form to your website, you must have the Airship Web SDK installed, and to render the form you must load the Opt-in Forms plugin.</p>
+          <p>Once the SDK is installed and you are loading the plugin, you can choose to embed the form into an existing element on the page, or by displaying a modal to the user.<p>
+          <div class="note">
+            <header class="note-important">
+              Important
+            </header>
+            <p>The suggested opt-in text and the design and usage guidelines provided in the Documentation are not intended to be legal advice. The suggested text should not be used “as is”, and is instead an example of what may meet opt-in standards or requirements. Please consult your legal counsel before implementing particular language for your campaigns to address your specific use case or regulatory requirements in your jurisdiction.</p>
+          </div>
+          <div rel="sms-opt-in"></div>
+          <hr>
+          <div class="actions buttons">
+            <button type="button" name="prompt_sms" id="prompt_sms" class="btn ease" onclick="prompt_sms_form();">SMS Form</button>
+            <button type="button" name="prompt_email" id="prompt_email" class="btn ease" onclick="prompt_email_form();">Email Form</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Segmentation</h2>
+      </div>
+
+      <div class="user-section">
+        <div class="NUID">
+    <!-- NAMED USER -->
+          <div class="action-box" id="nuids">
+            <h3>Associate Named User</h3>
+            <p>Named Users allow you to associate multiple devices to a single user or profile that may be associated with more than one device, e.g., an end-user’s Chrome browser on their laptop and their iPhone. A device can have only one Named User, and a single Named User should not be associated with more than 50 devices. Named Users provide the ability to directly set tags on them (see Tag Groups).</p>
+            <div class="note">
+              <header class="note-note">
+                Note
+              </header>
+              <p>Associating the channel with a Named User ID, will implicitly disassociate the channel from the previously associated Named User ID, if it existed.</p>
+            </div>
+            <p>By default, Named Users can only be associated server-side. A 403 Forbidden response is returned if Named User association is attempted when client-side association is disabled. In order to associate a Named User through the project, you must change the project’s Named User security setting to allow Named Users to be set from devices. <a href="https://docs.airship.com/guides/messaging/user-guide/audience/segmentation/named-users/#client-side-named-user-association" target="_blank">Client-Side Named User Association</a>.<p>
+            <hr>
+            <form id="nuid-form" class="actions">
+              <label for="nuid">Named User ID</label>
+              <input type="text" id="nuid" name="nuid" placeholder="userID">
+              <button type="button" name="setUser" class="btn ease" id="setUser" onclick="associateNamedUser();">Set User</button>
+            </form>
+          </div>
+        </div>
+
+  <!-- TAGS -->
+        <div class="action-box" id="tags">
+          <h3>Tags</h3>
+          <p>
+            Tags are metadata that you can associate with <b>channels</b> or <b>named users</b> to help you organize and target your audience. Tag groups categorize your tags. They are descriptive terms indicating user preferences or other categorizations, used to track information about your audience and are set at the Channel and Named User level. You can also trigger messages based on a tag change.
+          </p>
+          <p>Generally, you want to set tags on your audience in response to things they do, like:</p>
+          <ul>
+            <li>Subscribing to a particular service</li>
+            <li>Checking a box on your website indicating that they like a particular product</li>
+            <li>Engaging with a message from you by following a link</li>
+            <li>Viewing a page in your app</li>
+          </ul>
+          <h3>Tag Groups</h3>
+          <p>A tag group is an array of tags that you can associate with both channels and named users. In addition to the Airship default tag groups, you can create custom tag groups in the dashboard. See the <a href="https://docs.airship.com/guides/messaging/user-guide/audience/segmentation/tags/#tag-groups" target="_blank">Tag Groups</a> documentation for more details, including security information.</p>
+          <p><b>Example:</b> if members of your audience indicate that they like movies, you might assign those users a <code>likes_movies</code> tag in the <code>interests</code> group. You could then target users by interest, sending a specific message to the subset of your users with the <code>likes_movies</code> tag. Users without the tag won’t get your message.</p>
+          </p>
+          <div class="note">
+            <header class="note-note">
+              Note
+            </header>
+            <p>You must create tag groups in the dashboard before you can use the tag group to set tags on your audience. After you create your tag groups, you can start setting tags on channels and named users.</p>
+          </div>
+          <hr>
+          <form id="tags-form" class="actions">
+            <div class="form-block">
+              <label for="tag-group">Tag Group</label>
+              <input type="text" id="tag-group" name="tag-group" placeholder="Group Key">
+            </div>
+            <div class="form-block">
+              <label for="tag-name">Tag Name(s) <span class="helper">Use comma between strings ex: foo, bar</span></label>
+              <input type="text" id="tag-name" name="tag-name" placeholder="string">
+            </div>
+            <div class="form-block">
+              <button type="button" name="addTag" class="btn ease add" id="tag-add" onclick="changeTags(this);">Add</button>
+              <button type="button" name="removeTag" class="btn ease remove" id="tag-remove" onclick="changeTags(this);">Remove</button>
+              <button type="button" name="setTag" class="btn ease set" id="tag-set" onclick="changeTags(this);">Set</button>
+            </div>
+            <div class="onNUID">
+              <input type="checkbox" id="tagNU" name="tagNU" value="tagNU">
+              <label for="user-level"> on Named User</label>
+            </div>
+          </form>
+        </div>
+
+  <!-- ATTRIBUTES -->
+        <div class="action-box" id="attrs">
+          <h3>Attributes</h3>
+          <p>Attributes are metadata used for audience segmentation and personalization. They extend the concept of Tags by adding comparison operators and values to determine whether or not to target a user, helping you better evaluate your audience.</p>
+          <div class="note">
+            <header class="note-note">
+              Note
+            </header>
+            <p>For Predefined and Custom Attributes, you must add them to your project before you can set them on your audience.</p>
+          </div>
+          <p>There is no setup required for Default and NPS survey Attributes. You can go straight to Targeting your audience using Attributes.</p>
+          <p>You can add up to 250 Attributes per project.</p>
+          <hr>
+          <table width="100%" class="reference-table">
+            <colgroup>
+              <col style="width:20%">
+              <col style="width:40%">
+              <col style="width:40%">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Attribute type</th>
+                <th>Value format</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>String</td>
+                <td>n/a</td>
+              </tr>
+              <tr>
+                <td>Number</td>
+                <td>Number or float value</td>
+                <td>When setting Number Attributes, you can provide your value as an integer, float, or string.</td>
+              </tr>
+              <tr>
+                <td>Date</td>
+                <td>ISO 8601 date-time formatted string: <code>YYYY-MM-DDTHH:MM:SS</code></td>
+                <td>You can set an offset by appending the date-time with <code>+HH:MM</code>. For example, <code>2020-07-20T12:35:42+08:00</code>. Date Attributes are converted to and stored as UTC.</td>
+              </tr>
+              <tr>
+                <td>JSON</td>
+                <td>An object containing one or more key-value pairs and arrays</td>
+                <td>JSON Attributes are not available in <a class="tooltip" href="/guides/messaging/user-guide/data/data-intro/#analytics" target="_blank">Performance Analytics<span class="tooltip__content">A customizable marketing intelligence tool that provides access to reports and graphs based on engagement data.</span></a>. See following page section for additional information.</td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <table width="100%" class="reference-table">
+            <colgroup><col style="width:20%">
+              <col style="width:40%">
+              <col style="width:40%">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Attribute type</th>
+                <th>Operators</th>
+                <th>API reference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>equals, contains, less, greater, is_empty</td>
+                <td><a href="/api/ua/#schemas-textattribute">Text Attribute Selector</a></td>
+              </tr>
+              <tr>
+                <td>Number</td>
+                <td>equals, contains, less, greater, is_empty</td>
+                <td><a href="/api/ua/#schemas-numberattribute">Number Attribute Selector</a></td>
+              </tr>
+              <tr>
+                <td>Date</td>
+                <td>equals, before, after, is_empty, range</td>
+                <td><a href="/api/ua/#schemas-dateattribute">Date Attribute Selector</a></td>
+              </tr>
+              <tr>
+                <td>JSON</td>
+                <td>equals, contains, not_contains, less, greater, is_empty, not_empty<sup>1</sup></td>
+                <td><a href="/api/ua/#schemas-jsonattribute">JSON Attribute Selector</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <form id="attr-form" class="actions">
+            <div class="form-block">
+              <label for="attr-id">First Name:</label>
+              <input type="text" id="first_name" name="first_name" placeholder="first_name" class="attr-inputs">
+            </div>
+            <div class="form-block">
+              <label for="attr-name">Last Name:</label>
+              <input type="text" id="last_name" name="last_name" placeholder="last_name" class="attr-inputs">
+            </div>
+            <div class="form-block">
+              <label for="attr-name">Loyalty Tier:</label>
+              <input type="text" id="loyalty_tier" name="loyalty_tier" placeholder="loyalty_tier" class="attr-inputs">
+            </div>
+            <div class="form-block">
+              <button type="button" name="addAttr" class="btn ease add" id="attr-add" onclick="setAttrs();">Add</button>
+            </div>
+            <div class="onNUID">
+              <input type="checkbox" id="attrNU" name="attrNU" value="attrNU">
+              <label for="user-level"> on Named User</label>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="footer-company-info-wrapper">
+        <a href="https://www.airship.com/" target="_blank"><img class="footer-company-logo" src="https://www.airship.com/wp-content/uploads/2023/05/brand-airship-dark.svg"></a>
+      </div>
+      <div class="footer-link-tree-wrapper">
+        <div class="footer-link-column-wrapper">
+            <div class="footer-header">Documentation</div>
+            <a class="footer-link" href="https://docs.airship.com/" target="_blank">Airship Docs</a>
+            <a class="footer-link" href="https://docs.airship.com/whats-new/" target="_blank">What's New</a>
+            <a class="footer-link" href="https://docs.airship.com/integrations/" target="_blank">Integrations</a>
+            <a class="footer-link" href="https://support.airship.com/hc/en-us" target="_blank">Support Knowledgebase</a>
+        </div>
+        <div class="footer-link-column-wrapper">
+          <div class="footer-header">Resources</div>
+          <a class="footer-link" href="https://www.airship.com/resources/" target="_blank">Content Library</a>
+          <a class="footer-link" href="https://www.airship.com/resources/blog/" target="_blank">Blog</a>
+          <a class="footer-link" href="https://www.airship.com/company/events/" target="_blank">Events</a>
+          <a class="footer-link" href="https://www.airship.com/resources/podcast/" target="_blank">Podcast</a>
+        </div>
+        <div class="footer-link-column-wrapper">
+          <div class="footer-header">Company</div>
+          <a class="footer-link" href="https://docs.airship.com/guides/messaging/getting-started/1st-flight-app/" target="_blank">Get the Airship App</a>
+          <a class="footer-link" href="https://www.airship.com/company/" target="_blank">About Airship</a>
+          <a class="footer-link" href="https://www.airship.com/company/contact-us/" target="_blank">Contact Us</a>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/site_functions.js"></script>
+  </body>
+</html>
