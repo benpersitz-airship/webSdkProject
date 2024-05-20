@@ -91,33 +91,41 @@ async function associateNamedUser() {
 
 async function changeTags(e) {
 	const id = e.id;
+	const tagForm = document.querySelector("#tags-form")
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
+	let result;
 	if (tagNU.checked) {
 		if (id == "tag-add") {
-			channel.namedUser.tags.add(tagString, tagGroup);
+			result = await channel.namedUser.tags.add(tagString, tagGroup);	
 		} else if (id == "tag-remove") {
-			channel.namedUser.tags.remove(tagString, tagGroup);
+			result = await channel.namedUser.tags.remove(tagString, tagGroup);
 		} else {
-			channel.namedUser.tags.set(tagString, tagGroup);
+			result = await channel.namedUser.tags.set(tagString, tagGroup);
 		}
 	} else {
 		if (id == "tag-add") {
-			channel.tags.add(tagString, tagGroup);
+			result = await channel.tags.add(tagString, tagGroup);
 		} else if (id == "tag-remove") {
-			channel.tags.remove(tagString, tagGroup);
-			console.log("tag removed");
+			result = await channel.tags.remove(tagString, tagGroup);
 		} else {
-			channel.tags.set(tagString, tagGroup);
+			result = await channel.tags.set(tagString, tagGroup);
 		}
+	}
+	if(result == true){
+		console.log('tag operation completed successfully')
+		tagForm.reset()
+	} else{
+		console.log('error performing tag operation')
 	}
 }
 
 async function setAttrs() {
 	const attrNU = document.getElementById("attrNU");
+	const attrForm = document.querySelector("#attr-form")
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
 	const fnValue = document.querySelector("#first_name").value;
@@ -138,13 +146,15 @@ async function setAttrs() {
 	}
 	if (attrNU.checked) {
 		const results = await channel.namedUser.attributes.set(valueList);
-		results == true
-			? console.log("Attributes set")
-			: console.log("An error occurred");
+		if(results == true){
+			attrForm.reset()
+			console.log("Attributes set")
+		}
 	} else {
-		const results = await channel.atributes.set(valueList);
-		results == true
-			? console.log("Attributes set")
-			: console.log("An error occurred");
+		const results = await channel.attributes.set(valueList);
+		if(results == true){
+			attrForm.reset()
+			console.log("Attributes set")
+		}
 	}
 }
