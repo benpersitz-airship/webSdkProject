@@ -488,3 +488,11 @@
       font-weight: bold;
     }
   }
+
+  .error-toast {
+    color: white;
+  }
+  
+  .success-toast {
+    color: white;
+  }

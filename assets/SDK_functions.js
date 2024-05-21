@@ -48,7 +48,7 @@ function prompt_sms_form() {
 		);
 	}).then((formFactory) => {
 		let form = formFactory.setupModalForm(options);
-		form.open()
+		form.open();
 	});
 }
 
@@ -91,41 +91,67 @@ async function associateNamedUser() {
 
 async function changeTags(e) {
 	const id = e.id;
-	const tagForm = document.querySelector("#tags-form")
+	const tagForm = document.querySelector("#tags-form");
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
+	const tagArray = tagString.split(",");
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
-	let result;
-	if (tagNU.checked) {
-		if (id == "tag-add") {
-			result = await channel.namedUser.tags.add(tagString, tagGroup);	
-		} else if (id == "tag-remove") {
-			result = await channel.namedUser.tags.remove(tagString, tagGroup);
+	let result = false;
+	if (id == "tag-set") {
+		if (tagNU.checked) {
+			result = await channel.namedUser.tags.set([tagString], tagGroup);
 		} else {
-			result = await channel.namedUser.tags.set(tagString, tagGroup);
+			result = await channel.tags.set([tagString], tagGroup);
 		}
 	} else {
-		if (id == "tag-add") {
-			result = await channel.tags.add(tagString, tagGroup);
-		} else if (id == "tag-remove") {
-			result = await channel.tags.remove(tagString, tagGroup);
-		} else {
-			result = await channel.tags.set(tagString, tagGroup);
+		for (let tag of tagArray) {
+			if (tagNU.checked) {
+				if (id == "tag-add") {
+					result = await channel.namedUser.tags.add(tag, tagGroup);
+				} else if (id == "tag-remove") {
+					result = await channel.namedUser.tags.remove(tag, tagGroup);
+				}
+			} else {
+				if (id == "tag-add") {
+					result = await channel.tags.add(tagString, tagGroup);
+				} else if (id == "tag-remove") {
+					result = await channel.tags.remove(tagString, tagGroup);
+				}
+			}
 		}
 	}
-	if(result == true){
-		console.log('tag operation completed successfully')
-		tagForm.reset()
-	} else{
-		console.log('error performing tag operation')
+	if (result == true) {
+		console.log("tag operation completed successfully");
+		Toastify({
+			text: "Tag operation completed successfully",
+			duration: 5000,
+			className: "success-toast",
+			position: "center",
+			close: true,
+			style: {
+				background: "green"
+			}
+		}).showToast();
+		tagForm.reset();
+	} else {
+		Toastify({
+			text: "Error completing the tag operation",
+			duration: 5000,
+			className: "error-toast",
+			position: "center",
+			close: true,
+			style: {
+				background: "red"
+			}
+		}).showToast();
 	}
 }
 
 async function setAttrs() {
 	const attrNU = document.getElementById("attrNU");
-	const attrForm = document.querySelector("#attr-form")
+	const attrForm = document.querySelector("#attr-form");
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
 	const fnValue = document.querySelector("#first_name").value;
@@ -141,20 +167,60 @@ async function setAttrs() {
 			delete valueList[value];
 		} else if (valueList[value] == "null") {
 			valueList[value] = "";
-			console.log("WOWWWW");
 		}
 	}
 	if (attrNU.checked) {
 		const results = await channel.namedUser.attributes.set(valueList);
-		if(results == true){
-			attrForm.reset()
-			console.log("Attributes set")
+		if (results == true) {
+			attrForm.reset();
+			Toastify({
+				text: "Attribute operation completed successfully",
+				duration: 5000,
+				className: "success-toast",
+				position: "center",
+				close: true,
+				style: {
+					background: "green"
+				}
+			}).showToast();
+		} else {
+			Toastify({
+				text: "Error completing the attribute operation",
+				duration: 5000,
+				className: "error-toast",
+				position: "center",
+				close: true,
+				style: {
+					background: "red"
+				}
+			}).showToast();
 		}
 	} else {
 		const results = await channel.attributes.set(valueList);
-		if(results == true){
-			attrForm.reset()
-			console.log("Attributes set")
+		if (results == true) {
+			attrForm.reset();
+			console.log("Attributes set");
+			Toastify({
+				text: "Attribute operation completed successfully",
+				duration: 5000,
+				className: "success-toast",
+				position: "center",
+				close: true,
+				style: {
+					background: "green"
+				}
+			}).showToast();
+		} else {
+			Toastify({
+				text: "Error completing the atrribute operation",
+				duration: 5000,
+				className: "error-toast",
+				position: "center",
+				close: true,
+				style: {
+					background: "red"
+				}
+			}).showToast();
 		}
 	}
 }
