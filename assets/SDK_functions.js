@@ -89,8 +89,8 @@ async function associateNamedUser() {
 	channel.namedUser.set(namedUserId);
 }
 
-async function changeTags(e) {
-	const id = e.id;
+async function addTags() {
+	let result = false;
 	const tagForm = document.querySelector("#tags-form");
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
@@ -98,30 +98,81 @@ async function changeTags(e) {
 	const tagArray = tagString.split(",");
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
-	let result = false;
-	if (id == "tag-set") {
+	for (let tag of tagArray) {
 		if (tagNU.checked) {
-			result = await channel.namedUser.tags.set([tagString], tagGroup);
+			result = await channel.namedUser.tags.add(tag, tagGroup);
 		} else {
-			result = await channel.tags.set([tagString], tagGroup);
-		}
-	} else {
-		for (let tag of tagArray) {
-			if (tagNU.checked) {
-				if (id == "tag-add") {
-					result = await channel.namedUser.tags.add(tag, tagGroup);
-				} else if (id == "tag-remove") {
-					result = await channel.namedUser.tags.remove(tag, tagGroup);
-				}
-			} else {
-				if (id == "tag-add") {
-					result = await channel.tags.add(tagString, tagGroup);
-				} else if (id == "tag-remove") {
-					result = await channel.tags.remove(tagString, tagGroup);
-				}
-			}
+			result = await channel.tags.add(tag, tagGroup);
 		}
 	}
+	notifyResult(result);
+}
+
+async function removeTags() {
+	let result = false;
+	const tagNU = document.getElementById("tagNU");
+	const tagGroup = document.getElementById("tag-group").value;
+	const tagString = document.getElementById("tag-name").value;
+	const tagArray = tagString.split(",");
+	const SDK = await UA;
+	const channel = await SDK.getChannel();
+	for (let tag of tagArray) {
+		if (tagNU.checked) {
+			result = await channel.namedUser.tags.remove(tag, tagGroup);
+		} else {
+			result = await channel.tags.remove(tag, tagGroup);
+		}
+	}
+	notifyResult(result);
+}
+
+async function setTags() {
+	const SDK = await UA;
+	const channel = await SDK.getChannel();
+	let result = false;
+	const tagForm = document.querySelector("#tags-form");
+	const tagNU = document.getElementById("tagNU");
+	const tagGroup = document.getElementById("tag-group").value;
+	const tagString = document.getElementById("tag-name").value;
+	if (tagNU.checked) {
+		result = await channel.namedUser.tags.set([tagString], tagGroup);
+	} else {
+		result = await channel.tags.set([tagString], tagGroup);
+	}
+	notifyResult(result);
+}
+
+async function setAttrs() {
+	const attrNU = document.getElementById("attrNU");
+	const attrForm = document.querySelector("#attr-form");
+	const SDK = await UA;
+	const channel = await SDK.getChannel();
+	const fnValue = document.querySelector("#first_name").value;
+	const lnValue = document.querySelector("#last_name").value;
+	const tierValue = document.querySelector("#loyalty_tier").value;
+	const valueList = {
+		first_name: fnValue,
+		last_name: lnValue,
+		loyalty_tier: tierValue
+	};
+	for (let value of Object.keys(valueList)) {
+		if (valueList[value] == "") {
+			delete valueList[value];
+		} else if (valueList[value] == "null") {
+			valueList[value] = "";
+		}
+	}
+	if (attrNU.checked) {
+		const result = await channel.namedUser.attributes.set(valueList);
+		notifyResult(result);
+	} else {
+		const result = await channel.attributes.set(valueList);
+		notifyResult(result);
+	}
+}
+
+function notifyResult(result) {
+	const tagForm = document.querySelector("#tags-form");
 	if (result == true) {
 		console.log("tag operation completed successfully");
 		Toastify({
@@ -146,81 +197,5 @@ async function changeTags(e) {
 				background: "red"
 			}
 		}).showToast();
-	}
-}
-
-async function setAttrs() {
-	const attrNU = document.getElementById("attrNU");
-	const attrForm = document.querySelector("#attr-form");
-	const SDK = await UA;
-	const channel = await SDK.getChannel();
-	const fnValue = document.querySelector("#first_name").value;
-	const lnValue = document.querySelector("#last_name").value;
-	const tierValue = document.querySelector("#loyalty_tier").value;
-	const valueList = {
-		first_name: fnValue,
-		last_name: lnValue,
-		loyalty_tier: tierValue
-	};
-	for (let value of Object.keys(valueList)) {
-		if (valueList[value] == "") {
-			delete valueList[value];
-		} else if (valueList[value] == "null") {
-			valueList[value] = "";
-		}
-	}
-	if (attrNU.checked) {
-		const results = await channel.namedUser.attributes.set(valueList);
-		if (results == true) {
-			attrForm.reset();
-			Toastify({
-				text: "Attribute operation completed successfully",
-				duration: 5000,
-				className: "success-toast",
-				position: "center",
-				close: true,
-				style: {
-					background: "green"
-				}
-			}).showToast();
-		} else {
-			Toastify({
-				text: "Error completing the attribute operation",
-				duration: 5000,
-				className: "error-toast",
-				position: "center",
-				close: true,
-				style: {
-					background: "red"
-				}
-			}).showToast();
-		}
-	} else {
-		const results = await channel.attributes.set(valueList);
-		if (results == true) {
-			attrForm.reset();
-			console.log("Attributes set");
-			Toastify({
-				text: "Attribute operation completed successfully",
-				duration: 5000,
-				className: "success-toast",
-				position: "center",
-				close: true,
-				style: {
-					background: "green"
-				}
-			}).showToast();
-		} else {
-			Toastify({
-				text: "Error completing the atrribute operation",
-				duration: 5000,
-				className: "error-toast",
-				position: "center",
-				close: true,
-				style: {
-					background: "red"
-				}
-			}).showToast();
-		}
 	}
 }
