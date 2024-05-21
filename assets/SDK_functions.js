@@ -91,7 +91,6 @@ async function associateNamedUser() {
 
 async function addTags() {
 	let result = false;
-	const tagForm = document.querySelector("#tags-form");
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
@@ -130,7 +129,6 @@ async function setTags() {
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
 	let result = false;
-	const tagForm = document.querySelector("#tags-form");
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
