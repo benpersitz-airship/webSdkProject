@@ -95,6 +95,7 @@ async function addTags() {
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
 	const tagArray = tagString.split(",");
+	tagArray = tagArray.map((tag) => tag.trim())
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
 	for (let tag of tagArray) {
@@ -112,7 +113,8 @@ async function removeTags() {
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
-	const tagArray = tagString.split(",");
+	let tagArray = tagString.split(",");
+	tagArray = tagArray.map((tag) => tag.trim())
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
 	for (let tag of tagArray) {
@@ -132,10 +134,12 @@ async function setTags() {
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
+	const tagArray = tagString.split(",");
+	const trimmedTagArray = tagArray.map((tag) => tag.trim())
 	if (tagNU.checked) {
-		result = await channel.namedUser.tags.set([tagString], tagGroup);
+		result = await channel.namedUser.tags.set(trimmedTagArray, tagGroup);
 	} else {
-		result = await channel.tags.set([tagString], tagGroup);
+		result = await channel.tags.set(trimmedTagArray, tagGroup);
 	}
 	notifyResult(result);
 }
