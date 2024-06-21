@@ -8,6 +8,7 @@ function prompt_registration() {
 				"https://aswpsdkus.com/notify/v1/ua-html-prompt.min.js",
 				{
 					askAgainDelay: 0,
+					stylesheet: "assets/airshipstyles.css",
 					i18n: {
 						en: {
 							title: "Lets keep in touch",
