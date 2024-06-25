@@ -31,7 +31,7 @@
     }
   }
 
-  window.onload = function(){
+  window.onload = async function(){
     main();
     console.log('Ran this demo before? You may need to update or clear your browser settings to retrigger the prompt');
   }

@@ -95,7 +95,7 @@ async function addTags() {
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
-	const tagArray = tagString.split(",");
+	let tagArray = tagString.split(",");
 	tagArray = tagArray.map((tag) => tag.trim())
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
@@ -135,7 +135,7 @@ async function setTags() {
 	const tagNU = document.getElementById("tagNU");
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
-	const tagArray = tagString.split(",");
+	let tagArray = tagString.split(",");
 	const trimmedTagArray = tagArray.map((tag) => tag.trim())
 	if (tagNU.checked) {
 		result = await channel.namedUser.tags.set(trimmedTagArray, tagGroup);
@@ -153,7 +153,7 @@ async function setAttrs() {
 	const fnValue = document.querySelector("#first_name").value;
 	const lnValue = document.querySelector("#last_name").value;
 	const tierValue = document.querySelector("#loyalty_tier").value;
-	const valueList = {
+	let valueList = {
 		first_name: fnValue,
 		last_name: lnValue,
 		loyalty_tier: tierValue
