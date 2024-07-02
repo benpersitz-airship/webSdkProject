@@ -20,9 +20,13 @@ function prompt_registration() {
 					}
 				}
 			)
-			.then((plugin) => plugin.prompt());
+			.then((plugin) => {
+				console.log(plugin);
+				plugin.prompt();
+			});
 	});
 }
+
 
 function prompt_sms_form() {
 	let options = {
@@ -96,7 +100,7 @@ async function addTags() {
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
 	let tagArray = tagString.split(",");
-	tagArray = tagArray.map((tag) => tag.trim())
+	tagArray = tagArray.map((tag) => tag.trim());
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
 	for (let tag of tagArray) {
@@ -115,7 +119,7 @@ async function removeTags() {
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
 	let tagArray = tagString.split(",");
-	tagArray = tagArray.map((tag) => tag.trim())
+	tagArray = tagArray.map((tag) => tag.trim());
 	const SDK = await UA;
 	const channel = await SDK.getChannel();
 	for (let tag of tagArray) {
@@ -136,9 +140,10 @@ async function setTags() {
 	const tagGroup = document.getElementById("tag-group").value;
 	const tagString = document.getElementById("tag-name").value;
 	let tagArray = tagString.split(",");
-	const trimmedTagArray = tagArray.map((tag) => tag.trim())
+	const trimmedTagArray = tagArray.map((tag) => tag.trim());
 	if (tagNU.checked) {
 		result = await channel.namedUser.tags.set(trimmedTagArray, tagGroup);
+        console.log(result)
 	} else {
 		result = await channel.tags.set(trimmedTagArray, tagGroup);
 	}
